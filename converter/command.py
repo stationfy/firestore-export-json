@@ -112,7 +112,8 @@ def process_files(
     f = partial(process_file, source_dir, dest_dir, no_check_crc)
     p.map(f, files)
     print(
-        f"processed: {num_files_processed.value}/{num_files.value} {num_files_processed.value/num_files.value*100}%"
+	f"processing"
+        # f"processed: {num_files_processed.value}/{num_files.value} {num_files_processed.value/num_files.value*100}%"
     )
 
 
@@ -146,7 +147,8 @@ def process_file(source_dir: str, dest_dir: str, no_check_crc: bool, filename: s
         )
     num_files_processed.value += 1
     print(
-        f"progress: {num_files_processed.value}/{num_files.value} {num_files_processed.value/num_files.value*100}%"
+	f"progressing..."
+        # f"progress: {num_files_processed.value}/{num_files.value} {num_files_processed.value/num_files.value*100}%"
     )
 
 

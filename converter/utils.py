@@ -63,4 +63,12 @@ def serialize_json(obj):
             obj = obj - obj.utcoffset()
         millis = int(calendar.timegm(obj.timetuple()) * 1000 + obj.microsecond / 1000)
         return millis
-    return str(obj)
+    result = "##__CONVERSION_FAILURE__##"
+    try:
+      result = str(obj)
+      print("Normal", result)
+    except (UnicodeDecodeError, TypeError) as err:
+      print("Could not stringify object", err)
+      print(repr(obj))
+    return result
+
