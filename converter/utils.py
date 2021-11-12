@@ -66,9 +66,23 @@ def serialize_json(obj):
     result = "##__CONVERSION_FAILURE__##"
     try:
       result = str(obj)
-      print("Normal", result)
+      # print("Normal", result)
     except (UnicodeDecodeError, TypeError) as err:
-      print("Could not stringify object", err)
-      print(repr(obj))
+      # print("Could not stringify object", err)
+      # print(repr(obj))
+
+      try:
+        result = str(obj.decode('utf_16'))
+        # print("Fixed!")
+      except (UnicodeDecodeError, TypeError) as err2:
+        # print("Could not stringify object2", err2)
+        # print(repr(obj))
+        try:
+          result = str(obj.decode('latin-1'))
+          # print("Fixed!")
+        except (UnicodeDecodeError, TypeError) as err3:
+          print("Could not stringify object", err3)
+          print(repr(obj))
+
     return result
 
